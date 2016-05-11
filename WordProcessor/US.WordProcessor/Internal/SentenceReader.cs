@@ -9,9 +9,11 @@ namespace US.WordProcessor.Internal
    {
       private readonly List<string> _source;
       private int _index;
+      private readonly Sentence _sourceSentence;
       
       public SentenceReader(Sentence source)
       {
+         _sourceSentence = source;
          _source = source.ToList();
          _index = -1;
       }
@@ -31,13 +33,15 @@ namespace US.WordProcessor.Internal
       public bool HasPrevious => _index - 1 > -1;
       
       public bool HasNext => _index + 1 < _source.Count;
-      
-      public string Previous => HasPrevious
-         ? _source[_index - 1]
-         : null;
 
-      public string Next => HasNext
+      public Sentence SourceSentence => _sourceSentence;
+      
+      public Optional<string> Previous => HasPrevious
+         ? _source[_index - 1]
+         : new Optional<string>();
+
+      public Optional<string> Next => HasNext
          ? _source[_index + 1]
-         : null;      
+         : new Optional<string>();      
    }
 }

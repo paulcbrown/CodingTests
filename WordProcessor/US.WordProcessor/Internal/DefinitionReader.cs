@@ -23,19 +23,19 @@ namespace US.WordProcessor.Internal
 
       public string CurrentWord => _sentence.Current;
 
-      public string PreviousWord => _sentence.Previous;
+      public Optional<string> PreviousWord => _sentence.Previous;
 
-      public string NextWord => _sentence.Next;
+      public Optional<string> NextWord => _sentence.Next;
       
       public Definition CurrentDefinition => _dictionary.Define(_sentence.Current);
 
       public Definition PreviousDefinition => _sentence.HasPrevious
-         ? _dictionary.Define(_sentence.Previous)
+         ? _dictionary.Define(_sentence.Previous.Value)
          : new Definition(WordType.NotAvailable, _sentence.Current, "");
 
 
       public Definition NextDefinition => _sentence.HasNext
-         ? _dictionary.Define(_sentence.Next)
+         ? _dictionary.Define(_sentence.Next.Value)
          : new Definition(WordType.NotAvailable, _sentence.Current, "");      
    }
 }
