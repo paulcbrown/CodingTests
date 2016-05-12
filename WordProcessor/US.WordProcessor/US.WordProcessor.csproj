@@ -39,9 +39,12 @@
     <Compile Include="CorrectionType.cs" />
     <Compile Include="Correction.cs" />
     <Compile Include="Internal\Corrections\CorrectionRuleProcessor.cs" />
+    <Compile Include="Internal\Corrections\CorrectionRuleProcessorFactory.cs" />
     <Compile Include="Internal\Corrections\CorrectionRules\ContractionsNeedApostropheRule.cs" />
     <Compile Include="Internal\Corrections\CorrectionRules\ICorrectionRule.cs" />
     <Compile Include="Internal\Corrections\CorrectionRules\ProperNounFollowedByNounApostropheCorrectionRule.cs" />
+    <Compile Include="Internal\Corrections\CorrectionRules\RegularNounsDoNotNeedApostrophesRule.cs" />
+    <Compile Include="Internal\Extensions\StringExtensions.cs" />
     <Compile Include="Internal\Definition.cs" />
     <Compile Include="Internal\DefinitionReader.cs" />
     <Compile Include="Internal\Dictionary.cs" />

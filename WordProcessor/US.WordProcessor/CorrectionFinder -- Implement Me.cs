@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using US.WordProcessor.Internal;
 using US.WordProcessor.Internal.Corrections;
 using US.WordProcessor.Internal.Corrections.CorrectionRules;
@@ -11,11 +12,9 @@ namespace US.WordProcessor
    {
       private static CorrectionRuleProcessor _correctionRuleProcessor;
 
-      internal CorrectionFinder(Dictionary dictionary)
+      internal CorrectionFinder(CorrectionRuleProcessor correctionRuleProcessor)
       {
-         _correctionRuleProcessor = new CorrectionRuleProcessor(new List<ICorrectionRule>() {
-            new ProperNounFollowedByNounApostropheCorrectionRule(dictionary)}
-            );
+         _correctionRuleProcessor = correctionRuleProcessor;
       }
 
       public IEnumerable<Correction> Find(Paragraph paragraph)
@@ -38,7 +37,7 @@ namespace US.WordProcessor
 
          while (sentenceReader.MoveNext())
          {
-            IEnumerable<Correction> correctionsForWord = _correctionRuleProcessor.ProcessCorrectionRulesOnWord(sentenceReader);
+            IEnumerable<Correction> correctionsForWord = _correctionRuleProcessor.ProcessCorrectionRulesOnCurrentWord(sentenceReader);
 
             corrections.AddRange(correctionsForWord);
          }

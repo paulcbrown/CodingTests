@@ -9,7 +9,7 @@ namespace US.WordProcessor.Internal
 
       public Optional(T value)
       {
-         HasValue = Equals(null, value);
+         HasValue = !Equals(null, value);
          Value = value;
       }
 

@@ -1,4 +1,5 @@
 ﻿using US.WordProcessor.Internal;
+using US.WordProcessor.Internal.Corrections;
 
 namespace US.WordProcessor
 {
@@ -6,7 +7,7 @@ namespace US.WordProcessor
    {
       public static ICorrectionFinder CreateCorrectionFinder()
       {
-         return new CorrectionFinder(new Dictionary());
+         return new CorrectionFinder(CorrectionRuleProcessorFactory.CreateCorrectionRuleProcessor());
       }
    }
 }

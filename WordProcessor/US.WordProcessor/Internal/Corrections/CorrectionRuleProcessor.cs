@@ -16,13 +16,13 @@ namespace US.WordProcessor.Internal.Corrections
          _correctionRules = correctionRules;
       }
 
-      internal IEnumerable<Correction> ProcessCorrectionRulesOnWord(SentenceReader sentenceReader)
+      internal IEnumerable<Correction> ProcessCorrectionRulesOnCurrentWord(SentenceReader sentenceReader)
       {
          var corrections = new List<Correction>();
 
          foreach (var correctionRule in _correctionRules)
          {
-            var possibleCorrection = correctionRule.RunRuleOnWord(sentenceReader);
+            var possibleCorrection = correctionRule.RunRuleOnCurrentWord(sentenceReader);
 
             if (possibleCorrection.HasValue)
             {
